@@ -9,6 +9,10 @@ router = APIRouter(
     tags=['User']
 )
 
+@router.post('/display')
+def display(user: schemas.Login):
+    return f"I am {user.username} "
+
 @router.get('/',response_model=List[schemas.User])
 def all_users(db: Session = Depends(database.get_db)):
     return crud.get_users(db=db)
